@@ -1,6 +1,7 @@
 package com.domain.app.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -16,5 +17,7 @@ public class CustomerVo {
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
-	private Date dataOfBirth;
+	private Date dateOfBirth;
+	private List<AddressVo> addresses;
+	private List<PaymentDetailsVo> paymentDetails;
 }

@@ -71,7 +71,7 @@ public class OrderDetail extends BaseEntity implements Serializable{
 	private BigDecimal totalPrice;
 
 	//bi-directional many-to-one association to OrderItemDetail
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="orderDetail")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="orderDetail")
 	private List<OrderItemDetail> orderItemDetails = new ArrayList<>();
 
 	@Temporal(TemporalType.TIMESTAMP)

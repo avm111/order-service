@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -19,10 +20,14 @@ import lombok.Setter;
 @Table(name="pizza_toppings_master")
 @Getter
 @Setter
-public class PizzaToppingsMaster extends BaseEntity implements Serializable {
+public class PizzaToppingsMaster implements Serializable {
 
 	private static final long serialVersionUID = 8738379993449127147L;
 
+	@Id
+	@Column(name="id")
+	private String toppingsId;
+	
 	@Column(name="topping_name")
 	private String toppingName;
 

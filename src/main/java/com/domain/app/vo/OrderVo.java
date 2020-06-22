@@ -21,6 +21,4 @@ public class OrderVo {
 	private Date createdOn;
 	private String createdBy;
 	private CustomerVo customer;
-	private AddressVo address;
-
 }

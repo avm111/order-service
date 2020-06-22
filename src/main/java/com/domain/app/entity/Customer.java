@@ -41,7 +41,7 @@ public class Customer extends BaseEntity implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="data_of_birth")
-	private Date dataOfBirth;
+	private Date dateOfBirth;
 	
 	//bi-directional many-to-one association to Order
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="customer")

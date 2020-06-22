@@ -17,10 +17,10 @@ import lombok.Setter;
  * 
  */
 @Entity
-@Table(name="registerd_users")
+@Table(name="registered_users")
 @Getter
 @Setter
-public class RegisterdUser extends BaseEntity implements Serializable {
+public class RegisteredUser extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
@@ -35,6 +35,6 @@ public class RegisterdUser extends BaseEntity implements Serializable {
 	@Column(name="user_role")
 	private String userRole;
 
-	public RegisterdUser() {
+	public RegisteredUser() {
 	}
 }

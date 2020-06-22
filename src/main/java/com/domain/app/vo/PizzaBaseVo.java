@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PizzaBaseVo {
-	private String id;
+	private String baseId;
 	private String baseSize;
 	private String crustType;
 	private BigDecimal price;

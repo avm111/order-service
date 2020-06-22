@@ -13,6 +13,7 @@ import com.domain.app.exception.ErrorTo;
 import com.domain.app.service.CustomerService;
 import com.domain.app.vo.CustomerRequestVo;
 import com.domain.app.vo.CustomerVo;
+import com.domain.app.vo.OrderVo;
 import com.domain.app.vo.PizzaBaseVo;
 
 import io.swagger.annotations.ApiOperation;
@@ -32,13 +33,26 @@ public class CustomerController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = PizzaBaseVo.class),
 			@ApiResponse(code = 400, message = "Bad Request", response = ErrorTo.class)})
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomerVo> saveCustomerDetails(@RequestBody CustomerRequestVo customerRequestVo) {
+	public ResponseEntity<OrderVo> saveCustomerDetails(@RequestBody CustomerRequestVo customerRequestVo) {
 		log.info("CustomerController: saveCustomerDetails API invoked");
-		CustomerVo customerVo = customerService.createNewCustomer(customerRequestVo);
-		if(customerVo == null) {
+		OrderVo orderVo = customerService.createNewCustomer(customerRequestVo);
+		if(orderVo == null) {
 			log.error("Invalid Order");
+			return new ResponseEntity<OrderVo>(new OrderVo(), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<OrderVo>(orderVo, HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "Get Existing Customer Details", nickname = "Get Existing Customer Details")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = CustomerVo.class),
+			@ApiResponse(code = 400, message = "Bad Request", response = ErrorTo.class)})
+	@PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomerVo> getExistingCustomerInfo(@RequestBody CustomerVo requestVo) {
+		log.info("CustomerController: customerInfo API invoked");
+		CustomerVo response = customerService.getExistingCustomerInfo(requestVo);
+		if(response == null) {
 			return new ResponseEntity<CustomerVo>(new CustomerVo(), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<CustomerVo>(customerVo, HttpStatus.OK);
+		return new ResponseEntity<CustomerVo>(response, HttpStatus.OK);
 	}
 }
